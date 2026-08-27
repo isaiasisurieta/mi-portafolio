@@ -1,0 +1,414 @@
+---
+const keyRows = [
+	{ keys: 13, size: 'sm' },
+	{ keys: 14, size: 'sm' },
+	{ keys: 13, size: 'sm' },
+	{ keys: 12, size: 'sm' },
+	{ keys: 11, size: 'md' },
+];
+---
+
+<section
+	id="inicio"
+	class="mx-auto flex max-w-6xl flex-col items-center px-4 py-12 sm:py-20"
+>
+	<div class="laptop-scene w-full max-w-3xl">
+		<div class="laptop group relative">
+			<div
+				class="laptop-lid relative overflow-hidden rounded-t-xl border border-b-0 border-zinc-700 bg-zinc-900 shadow-[0_-18px_50px_-24px_rgba(0,0,0,0.8)]"
+			>
+				<div class="flex h-5 items-center justify-center sm:h-6">
+					<div
+						class="relative h-1.5 w-1.5 rounded-full bg-zinc-800 ring-1 ring-zinc-700"
+						aria-hidden="true"
+					>
+						<span class="absolute inset-[3px] rounded-full bg-zinc-500/80"></span>
+					</div>
+				</div>
+
+				<div class="px-2 pb-2 sm:px-3 sm:pb-3">
+					<div
+						class="relative aspect-video overflow-hidden rounded-[4px] border border-zinc-800 bg-black"
+						data-laptop-screen
+					>
+						<h1 class="sr-only">Isaías — Software Engineer</h1>
+
+						<video
+							class="screen-video absolute inset-0 z-10 h-full w-full object-cover"
+							data-intro-video
+							autoplay
+							muted
+							playsinline
+							preload="auto"
+							aria-hidden="true"
+						>
+							<source src="/video_hack.mp4" type="video/mp4" />
+						</video>
+
+						<div
+							class="screen-terminal absolute inset-0 z-20 flex h-full flex-col bg-black/95 font-mono text-xs leading-relaxed text-zinc-100 opacity-0 sm:text-sm"
+							data-intro-terminal
+							aria-hidden="true"
+						>
+							<div class="screen-scanlines pointer-events-none absolute inset-0"></div>
+							<div class="relative z-10 h-full overflow-auto p-4 sm:p-6">
+								{/* Primer Prompt: whoami */}
+								<div class="flex flex-wrap items-baseline gap-x-2">
+									<span class="text-green-400">isaías@portfolio</span>
+									<span class="text-zinc-500">:</span>
+									<span class="text-green-200">~</span>
+									<span class="text-zinc-100">$</span>
+									<span data-typed-command1></span>
+								</div>
+
+								{/* Foto, Nombre, Título e Info */}
+								<div class="mt-4 hidden flex-col gap-3" data-typed-profile>
+									<div class="flex items-center gap-4">
+										<img
+											src="/foto_p2.png"
+											alt="Isaías"
+											class="h-20 w-20 rounded-full border-2 border-green-500/50 object-cover shadow-md sm:h-24 sm:w-24"
+										/>
+										<div class="space-y-1">
+											<p class="text-sm font-bold text-zinc-100 sm:text-lg">
+												<span class="text-zinc-500 font-normal text-xs sm:text-sm">name  : </span>Isaías Isurieta
+											</p>
+											<p class="text-sm font-bold text-green-400 sm:text-lg">
+												<span class="text-zinc-500 font-normal text-xs sm:text-sm">title : </span>Software Engineer
+											</p>
+										</div>
+									</div>
+									<p class="max-w-2xl text-xs leading-relaxed text-zinc-300 sm:text-sm">
+										Tengo 6 meses de experiencia en el sector de desarrollo de software, me gusta programar tanto webs como aplicaciones de escritorio, Viva linux!
+									</p>
+								</div>
+
+								{/* Segundo Prompt: cat contact.txt */}
+								<div class="mt-4 hidden flex-wrap items-baseline gap-x-2" data-typed-prompt2>
+									<span class="text-green-400">isaías@portfolio</span>
+									<span class="text-zinc-500">:</span>
+									<span class="text-green-200">~</span>
+									<span class="text-zinc-100">$</span>
+									<span data-typed-command2></span>
+								</div>
+
+								{/* Enlaces de Contacto */}
+								<div
+									class="mt-2 hidden space-y-1 text-xs text-zinc-300 sm:text-sm"
+									data-typed-links>
+									<p>
+										<span class="text-green-500">email</span>
+										<span class="text-zinc-600">:</span>
+										<button
+											type="button"
+											class="text-zinc-100 underline decoration-green-700 underline-offset-2 hover:text-green-300 cursor-pointer"
+											data-copy-email="isaiasisurieta@gmail.com"
+										>Copy_isaiasisurieta@gmail.com</button>
+									</p>
+									<p>
+										<span class="text-green-500">cv</span>
+										<span class="text-zinc-600">:</span>
+										<a
+											class="text-zinc-100 underline decoration-green-700 underline-offset-2 hover:text-green-300"
+											href="/public/isaias_isurieta_aldana_cv.pdf"
+											target="_blank"
+											download>Download_IsaiasIsurieta_cv.pdf</a
+										>
+									</p>
+									<p>
+										<span class="text-green-500">linkedin</span>
+										<span class="text-zinc-600">:</span>
+										<a
+											class="text-zinc-100 underline decoration-green-700 underline-offset-2 hover:text-green-300"
+											href="https://www.linkedin.com/in/isaías-isurieta-aldana"
+											target="_blank"
+											rel="noreferrer">Link_IsaiasIsurieta</a
+										>
+									</p>
+									<p>
+										<span class="text-green-500">github</span>
+										<span class="text-zinc-600">:</span>
+										<a
+											class="text-zinc-100 underline decoration-green-700 underline-offset-2 hover:text-green-300"
+											href="https://github.com/isaiasisurieta"
+											target="_blank"
+											rel="noreferrer">Link_IsaiasIsurieta</a
+										>
+									</p>
+								</div>
+
+								{/* Prompt Final Estático */}
+								<div class="mt-3 hidden flex-wrap items-baseline gap-x-2" data-typed-prompt-final>
+									<span class="text-green-400">isaías@portfolio</span>
+									<span class="text-zinc-500"> :</span>
+									<span class="text-green-200"> ~</span>
+									<span class="text-zinc-100"> $ </span>
+									<span class="typed-cursor"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div
+				class="laptop-hinge relative z-10 h-2 bg-gradient-to-b from-zinc-700 via-zinc-800 to-zinc-900"
+				aria-hidden="true"
+			>
+				<div
+					class="absolute inset-x-8 top-1/2 h-px -translate-y-1/2 bg-zinc-600/40"
+				>
+				</div>
+			</div>
+
+			<div class="laptop-base origin-top rounded-b-xl border border-t-0 border-zinc-700 bg-zinc-800 px-3 pb-3 pt-2 sm:px-5 sm:pb-4">
+				<div class="space-y-1 rounded-md bg-zinc-900/70 p-1.5 sm:p-2" aria-hidden="true">
+					{
+						keyRows.map((row) => (
+							<div class="flex justify-center gap-1">
+								{Array.from({ length: row.keys }).map(() => (
+									<span
+										class:list={[
+											'h-1.5 rounded-[2px] border border-zinc-700/80 bg-zinc-800 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] sm:h-2',
+											row.size === 'md' ? 'w-[7.2%]' : 'w-[6.2%]',
+										]}
+									/>
+								))}
+							</div>
+						))
+					}
+					<div class="flex justify-center pt-0.5">
+						<span
+							class="h-1.5 w-[38%] rounded-[2px] border border-zinc-700/80 bg-zinc-800 sm:h-2"
+						>
+						</span>
+					</div>
+				</div>
+
+				<div
+					class="mx-auto mt-2 h-1.5 w-16 rounded-b-md bg-zinc-900 ring-1 ring-inset ring-zinc-700/70"
+					aria-hidden="true"
+				>
+				</div>
+
+				<div
+					class="mx-auto mt-2 h-10 w-[32%] rounded-md border border-zinc-700/80 bg-zinc-800/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] sm:h-12"
+					aria-hidden="true"
+				>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.laptop-scene {
+		perspective: 1400px;
+	}
+
+	.laptop {
+		transform-style: preserve-3d;
+		transition: transform 500ms ease;
+	}
+
+	.laptop-lid {
+		transform-origin: bottom center;
+		transform: rotateX(-8deg);
+		transition: transform 500ms ease, box-shadow 500ms ease;
+	}
+
+	.laptop-base {
+		transform: rotateX(16deg);
+		transform-origin: top center;
+		box-shadow: 0 28px 40px -24px rgb(0 0 0 / 0.85);
+	}
+
+	.laptop:hover {
+		transform: translateY(-6px);
+	}
+
+	.laptop:hover .laptop-lid {
+		transform: rotateX(-2deg);
+		box-shadow:
+			0 0 0 1px rgb(255 255 255 / 0.04),
+			0 -24px 60px -20px rgb(255 255 255 / 0.08);
+	}
+
+	.screen-video,
+	.screen-terminal {
+		transition: opacity 700ms ease;
+	}
+
+	.screen-video.is-hidden {
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	.screen-terminal {
+		pointer-events: none;
+	}
+
+	.screen-terminal.is-visible {
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	.screen-scanlines {
+		opacity: 0.4;
+		background: repeating-linear-gradient(
+			to bottom,
+			transparent 0,
+			transparent 2px,
+			rgb(0 0 0 / 0.2) 2px,
+			rgb(0 0 0 / 0.2) 4px
+		);
+	}
+
+	.typed-cursor {
+		display: inline-block;
+		width: 3px;
+		height: 0.95em;
+		background-color: #4ade80; /* Verde terminal */
+		animation: blink 1s step-end infinite;
+		margin-left: 4px;
+		vertical-align: text-bottom;
+	}
+
+	@keyframes blink {
+		50% {
+			opacity: 0;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.laptop,
+		.laptop-lid,
+		.screen-video,
+		.screen-terminal {
+			transition: none;
+		}
+
+		.laptop:hover {
+			transform: none;
+		}
+
+		.laptop:hover .laptop-lid {
+			transform: rotateX(-8deg);
+		}
+
+		.typed-cursor {
+			animation: none;
+		}
+	}
+</style>
+
+<script>
+	const FALLBACK_MS = 2000;
+	const TYPE_MS = 120;
+	const COMMAND1 = 'whoami';
+	const COMMAND2 = 'cat contact.txt';
+
+	const video = document.querySelector<HTMLVideoElement>('[data-intro-video]');
+	const terminal = document.querySelector<HTMLElement>('[data-intro-terminal]');
+	const command1El = document.querySelector<HTMLElement>('[data-typed-command1]');
+	const profileEl = document.querySelector<HTMLElement>('[data-typed-profile]');
+	const prompt2El = document.querySelector<HTMLElement>('[data-typed-prompt2]');
+	const command2El = document.querySelector<HTMLElement>('[data-typed-command2]');
+	const linksEl = document.querySelector<HTMLElement>('[data-typed-links]');
+	const promptFinalEl = document.querySelector<HTMLElement>('[data-typed-prompt-final]');
+
+	if (video && terminal && command1El && profileEl && prompt2El && command2El && linksEl && promptFinalEl) {
+		const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+		let switched = false;
+		let fallbackId = 0;
+
+		const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+		async function typeInto(el: HTMLElement, text: string, speed: number) {
+			for (const char of text) {
+				el.textContent += char;
+				if (speed > 0) await sleep(speed);
+			}
+		}
+
+		async function runTerminal() {
+			terminal.removeAttribute('aria-hidden');
+
+			if (reduceMotion) {
+				command1El.textContent = COMMAND1;
+				profileEl.classList.remove('hidden');
+				profileEl.classList.add('flex');
+				prompt2El.classList.remove('hidden');
+				prompt2El.classList.add('flex');
+				command2El.textContent = COMMAND2;
+				linksEl.classList.remove('hidden');
+				promptFinalEl.classList.remove('hidden');
+				return;
+			}
+
+			// Escribir comando 1: whoami
+			await typeInto(command1El, COMMAND1, TYPE_MS);
+			await sleep(150);
+
+			// Mostrar Info de Usuario
+			profileEl.classList.remove('hidden');
+			profileEl.classList.add('flex');
+			await sleep(350);
+
+			// Mostrar Prompt 2 y escribir comando 2: cat contact.txt
+			prompt2El.classList.remove('hidden');
+			prompt2El.classList.add('flex');
+			await typeInto(command2El, COMMAND2, TYPE_MS);
+			await sleep(150);
+
+			// Mostrar enlaces y prompt final
+			linksEl.classList.remove('hidden');
+			promptFinalEl.classList.remove('hidden');
+			promptFinalEl.classList.add('flex');
+		}
+
+		function showTerminal() {
+			if (switched) return;
+			switched = true;
+			window.clearTimeout(fallbackId);
+
+			video.classList.add('is-hidden');
+			terminal.classList.add('is-visible');
+			video.pause();
+
+			window.setTimeout(() => {
+				void runTerminal();
+			}, reduceMotion ? 0 : 350);
+		}
+
+		video.muted = true;
+		video.playsInline = true;
+
+		video.addEventListener('ended', showTerminal);
+		video.addEventListener('error', () => {
+			fallbackId = window.setTimeout(showTerminal, FALLBACK_MS);
+		});
+
+		void video.play().catch(() => {
+			fallbackId = window.setTimeout(showTerminal, FALLBACK_MS);
+		});
+	}
+
+	const emailBtn = document.querySelector('[data-copy-email]');
+
+	emailBtn?.addEventListener('click', async () => {
+		const email = emailBtn.getAttribute('data-copy-email');
+		if (!email) return;
+
+		await navigator.clipboard.writeText(email);
+
+		// Feedback visual temporal
+		const originalText = emailBtn.textContent;
+		emailBtn.textContent = '¡Copiado!';
+		setTimeout(() => {
+			emailBtn.textContent = originalText;
+		}, 1500);
+	});
+</script>
+
+```
