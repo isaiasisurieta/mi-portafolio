@@ -22,13 +22,13 @@ const keyRows = [
 						class="relative h-1.5 w-1.5 rounded-full bg-zinc-800 ring-1 ring-zinc-700"
 						aria-hidden="true"
 					>
-						<span class="absolute inset-[3px] rounded-full bg-zinc-500/80"></span>
+						<span class="absolute inset-0.75 rounded-full bg-zinc-500/80"></span>
 					</div>
 				</div>
 
 				<div class="px-2 pb-2 sm:px-3 sm:pb-3">
 					<div
-						class="relative aspect-video overflow-hidden rounded-[4px] border border-zinc-800 bg-black"
+						class="relative aspect-video overflow-hidden rounded-sm border border-zinc-800 bg-black"
 						data-laptop-screen
 					>
 						<h1 class="sr-only">Isaías — Software Engineer</h1>
@@ -36,14 +36,12 @@ const keyRows = [
 						<video
 							class="screen-video absolute inset-0 z-10 h-full w-full object-cover"
 							data-intro-video
-							autoplay
+							data-video-src="/video_hack.mp4"
 							muted
 							playsinline
-							preload="auto"
+							preload="none"
 							aria-hidden="true"
-						>
-							<source src="/video_hack.mp4" type="video/mp4" />
-						</video>
+						></video>
 
 						<div
 							class="screen-terminal absolute inset-0 z-20 flex h-full flex-col bg-black/95 font-mono text-xs leading-relaxed text-zinc-100 opacity-0 sm:text-sm"
@@ -99,18 +97,23 @@ const keyRows = [
 									<p>
 										<span class="text-green-500">email</span>
 										<span class="text-zinc-600">:</span>
+										<a
+											class="text-zinc-100 underline decoration-green-700 underline-offset-2 hover:text-green-300"
+											href="mailto:isaiasisurieta@gmail.com"
+										>isaiasisurieta@gmail.com</a>
 										<button
 											type="button"
-											class="text-zinc-100 underline decoration-green-700 underline-offset-2 hover:text-green-300 cursor-pointer"
+											class="ml-2 text-zinc-100 underline decoration-green-700 underline-offset-2 hover:text-green-300 cursor-pointer"
 											data-copy-email="isaiasisurieta@gmail.com"
-										>Copy_isaiasisurieta@gmail.com</button>
+										>Copiar</button>
+										<span data-copy-feedback role="status" aria-live="polite"></span>
 									</p>
 									<p>
 										<span class="text-green-500">cv</span>
 										<span class="text-zinc-600">:</span>
 										<a
 											class="text-zinc-100 underline decoration-green-700 underline-offset-2 hover:text-green-300"
-											href="/public/isaias_isurieta_aldana_cv.pdf"
+											href="/isaias_isurieta_aldana_cv.pdf"
 											target="_blank"
 											download>Download_IsaiasIsurieta_cv.pdf</a
 										>
@@ -122,7 +125,7 @@ const keyRows = [
 											class="text-zinc-100 underline decoration-green-700 underline-offset-2 hover:text-green-300"
 											href="https://www.linkedin.com/in/isaías-isurieta-aldana"
 											target="_blank"
-											rel="noreferrer">Link_IsaiasIsurieta</a
+											rel="noopener noreferrer">Link_IsaiasIsurieta</a
 										>
 									</p>
 									<p>
@@ -132,7 +135,7 @@ const keyRows = [
 											class="text-zinc-100 underline decoration-green-700 underline-offset-2 hover:text-green-300"
 											href="https://github.com/isaiasisurieta"
 											target="_blank"
-											rel="noreferrer">Link_IsaiasIsurieta</a
+											rel="noopener noreferrer">Link_IsaiasIsurieta</a
 										>
 									</p>
 								</div>
@@ -140,9 +143,9 @@ const keyRows = [
 								{/* Prompt Final Estático */}
 								<div class="mt-3 hidden flex-wrap items-baseline gap-x-2" data-typed-prompt-final>
 									<span class="text-green-400">isaías@portfolio</span>
-									<span class="text-zinc-500"> :</span>
-									<span class="text-green-200"> ~</span>
-									<span class="text-zinc-100"> $ </span>
+									<span class="text-zinc-500">:</span>
+									<span class="text-green-200">~</span>
+									<span class="text-zinc-100">$</span>
 									<span class="typed-cursor"></span>
 								</div>
 							</div>
@@ -152,7 +155,7 @@ const keyRows = [
 			</div>
 
 			<div
-				class="laptop-hinge relative z-10 h-2 bg-gradient-to-b from-zinc-700 via-zinc-800 to-zinc-900"
+				class="laptop-hinge relative z-10 h-2 bg-linear-to-b from-zinc-700 via-zinc-800 to-zinc-900"
 				aria-hidden="true"
 			>
 				<div
@@ -169,7 +172,7 @@ const keyRows = [
 								{Array.from({ length: row.keys }).map(() => (
 									<span
 										class:list={[
-											'h-1.5 rounded-[2px] border border-zinc-700/80 bg-zinc-800 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] sm:h-2',
+											'h-1.5 rounded-xs border border-zinc-700/80 bg-zinc-800 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] sm:h-2',
 											row.size === 'md' ? 'w-[7.2%]' : 'w-[6.2%]',
 										]}
 									/>
@@ -179,7 +182,7 @@ const keyRows = [
 					}
 					<div class="flex justify-center pt-0.5">
 						<span
-							class="h-1.5 w-[38%] rounded-[2px] border border-zinc-700/80 bg-zinc-800 sm:h-2"
+							class="h-1.5 w-[38%] rounded-xs border border-zinc-700/80 bg-zinc-800 sm:h-2"
 						>
 						</span>
 					</div>
@@ -303,7 +306,8 @@ const keyRows = [
 </style>
 
 <script>
-	const FALLBACK_MS = 2000;
+	const VIDEO_START_TIMEOUT_MS = 8000;
+	const VIDEO_STALL_TIMEOUT_MS = 2000;
 	const TYPE_MS = 120;
 	const COMMAND1 = 'whoami';
 	const COMMAND2 = 'cat contact.txt';
@@ -316,13 +320,36 @@ const keyRows = [
 	const command2El = document.querySelector<HTMLElement>('[data-typed-command2]');
 	const linksEl = document.querySelector<HTMLElement>('[data-typed-links]');
 	const promptFinalEl = document.querySelector<HTMLElement>('[data-typed-prompt-final]');
+	const emailBtn = document.querySelector<HTMLButtonElement>('[data-copy-email]');
+	const copyFeedback = document.querySelector<HTMLElement>('[data-copy-feedback]');
 
 	if (video && terminal && command1El && profileEl && prompt2El && command2El && linksEl && promptFinalEl) {
+		const introVideo = video;
+		const introTerminal = terminal;
+		const typedCommand1 = command1El;
+		const typedProfile = profileEl;
+		const typedPrompt2 = prompt2El;
+		const typedCommand2 = command2El;
+		const typedLinks = linksEl;
+		const typedPromptFinal = promptFinalEl;
 		const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 		let switched = false;
-		let fallbackId = 0;
+		let fallbackId: number | undefined;
+		let observer: IntersectionObserver | undefined;
 
 		const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+		function clearFallback() {
+			if (fallbackId !== undefined) {
+				window.clearTimeout(fallbackId);
+				fallbackId = undefined;
+			}
+		}
+
+		function scheduleFallback(delay: number) {
+			clearFallback();
+			fallbackId = window.setTimeout(showTerminal, delay);
+		}
 
 		async function typeInto(el: HTMLElement, text: string, speed: number) {
 			for (const char of text) {
@@ -332,83 +359,122 @@ const keyRows = [
 		}
 
 		async function runTerminal() {
-			terminal.removeAttribute('aria-hidden');
+			introTerminal.removeAttribute('aria-hidden');
 
 			if (reduceMotion) {
-				command1El.textContent = COMMAND1;
-				profileEl.classList.remove('hidden');
-				profileEl.classList.add('flex');
-				prompt2El.classList.remove('hidden');
-				prompt2El.classList.add('flex');
-				command2El.textContent = COMMAND2;
-				linksEl.classList.remove('hidden');
-				promptFinalEl.classList.remove('hidden');
+				typedCommand1.textContent = COMMAND1;
+				typedProfile.classList.remove('hidden');
+				typedProfile.classList.add('flex');
+				typedPrompt2.classList.remove('hidden');
+				typedPrompt2.classList.add('flex');
+				typedCommand2.textContent = COMMAND2;
+				typedLinks.classList.remove('hidden');
+				typedPromptFinal.classList.remove('hidden');
 				return;
 			}
 
 			// Escribir comando 1: whoami
-			await typeInto(command1El, COMMAND1, TYPE_MS);
+			await typeInto(typedCommand1, COMMAND1, TYPE_MS);
 			await sleep(150);
 
 			// Mostrar Info de Usuario
-			profileEl.classList.remove('hidden');
-			profileEl.classList.add('flex');
+			typedProfile.classList.remove('hidden');
+			typedProfile.classList.add('flex');
 			await sleep(350);
 
 			// Mostrar Prompt 2 y escribir comando 2: cat contact.txt
-			prompt2El.classList.remove('hidden');
-			prompt2El.classList.add('flex');
-			await typeInto(command2El, COMMAND2, TYPE_MS);
+			typedPrompt2.classList.remove('hidden');
+			typedPrompt2.classList.add('flex');
+			await typeInto(typedCommand2, COMMAND2, TYPE_MS);
 			await sleep(150);
 
 			// Mostrar enlaces y prompt final
-			linksEl.classList.remove('hidden');
-			promptFinalEl.classList.remove('hidden');
-			promptFinalEl.classList.add('flex');
+			typedLinks.classList.remove('hidden');
+			typedPromptFinal.classList.remove('hidden');
+			typedPromptFinal.classList.add('flex');
 		}
 
 		function showTerminal() {
 			if (switched) return;
 			switched = true;
-			window.clearTimeout(fallbackId);
+			clearFallback();
+			observer?.disconnect();
 
-			video.classList.add('is-hidden');
-			terminal.classList.add('is-visible');
-			video.pause();
+			introVideo.classList.add('is-hidden');
+			introTerminal.classList.add('is-visible');
+			introVideo.pause();
 
-			window.setTimeout(() => {
+			const reveal = () => {
 				void runTerminal();
-			}, reduceMotion ? 0 : 350);
+			};
+
+			if (reduceMotion) {
+				reveal();
+			} else {
+				window.setTimeout(reveal, 350);
+			}
 		}
 
-		video.muted = true;
-		video.playsInline = true;
+		function startVideo() {
+			if (switched) return;
 
-		video.addEventListener('ended', showTerminal);
-		video.addEventListener('error', () => {
-			fallbackId = window.setTimeout(showTerminal, FALLBACK_MS);
-		});
+			const videoSrc = introVideo.dataset.videoSrc;
+			if (!videoSrc) {
+				showTerminal();
+				return;
+			}
 
-		void video.play().catch(() => {
-			fallbackId = window.setTimeout(showTerminal, FALLBACK_MS);
-		});
+			scheduleFallback(VIDEO_START_TIMEOUT_MS);
+			introVideo.src = videoSrc;
+			introVideo.load();
+			void introVideo.play().catch(showTerminal);
+		}
+
+		introVideo.addEventListener('ended', showTerminal);
+		introVideo.addEventListener('error', showTerminal);
+		introVideo.addEventListener('playing', clearFallback);
+		introVideo.addEventListener('waiting', () => scheduleFallback(VIDEO_STALL_TIMEOUT_MS));
+		introVideo.addEventListener('stalled', () => scheduleFallback(VIDEO_STALL_TIMEOUT_MS));
+
+		if (reduceMotion) {
+			showTerminal();
+		} else if ('IntersectionObserver' in window) {
+			observer = new IntersectionObserver((entries) => {
+				if (entries.some((entry) => entry.isIntersecting)) {
+					startVideo();
+				}
+			}, { rootMargin: '200px' });
+
+			const scene = document.querySelector<HTMLElement>('.laptop-scene');
+			if (scene) {
+				observer.observe(scene);
+			} else {
+				startVideo();
+			}
+		} else {
+			startVideo();
+		}
 	}
 
-	const emailBtn = document.querySelector('[data-copy-email]');
+	if (emailBtn && copyFeedback) {
+		emailBtn.addEventListener('click', async () => {
+			const email = emailBtn.dataset.copyEmail;
+			if (!email) {
+				copyFeedback.textContent = 'No se encontró la dirección de correo.';
+				return;
+			}
 
-	emailBtn?.addEventListener('click', async () => {
-		const email = emailBtn.getAttribute('data-copy-email');
-		if (!email) return;
+			if (!navigator.clipboard?.writeText) {
+				copyFeedback.textContent = 'Copia manualmente la dirección de correo.';
+				return;
+			}
 
-		await navigator.clipboard.writeText(email);
-
-		// Feedback visual temporal
-		const originalText = emailBtn.textContent;
-		emailBtn.textContent = '¡Copiado!';
-		setTimeout(() => {
-			emailBtn.textContent = originalText;
-		}, 1500);
-	});
+			try {
+				await navigator.clipboard.writeText(email);
+				copyFeedback.textContent = 'Correo copiado.';
+			} catch {
+				copyFeedback.textContent = 'No se pudo copiar. Selecciona el correo y cópialo manualmente.';
+			}
+		});
+	}
 </script>
-
-```
