@@ -1,0 +1,100 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import VideoBackground from '../components/projects/VideoBackground.astro';
+import HologramText from '../components/projects/HologramText.astro';
+import ProjectItem from '../components/projects/ProjectItem.astro';
+import MorphButton from '../components/projects/MorphButton.astro';
+import { projects } from '../data/projects';
+---
+
+<Layout title="Proyectos | Isaías" description="Proyectos de Isaías: aplicaciones web con Astro, Tailwind y más.">
+	<Header />
+	<VideoBackground />
+	<main>
+		<div class="relative z-10 mx-auto flex max-w-[1100px] flex-col gap-24 px-6 pt-16 pb-24">
+			<HologramText
+				tag="h1"
+				variant="title"
+				text="Bienvenido a mis proyectos"
+				class="font-display -mb-4 text-center text-[clamp(2.25rem,6vw,4.5rem)] font-medium leading-[1.1] text-[#00ffff]"
+			/>
+
+			{projects.map((project, index) => (
+				<ProjectItem project={project} mirrored={index % 2 === 1} />
+			))}
+
+			<div class="flex justify-center">
+				<MorphButton />
+			</div>
+		</div>
+	</main>
+	<Footer />
+</Layout>
+
+<script>
+	const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	const wait = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));
+
+	async function typeIn(root: ParentNode, stepMs: number) {
+		for (const letter of root.querySelectorAll<HTMLElement>('.holo-letter')) {
+			letter.classList.add('is-on');
+			await wait(stepMs);
+		}
+	}
+
+	async function revealProject(project: HTMLElement) {
+		const name = project.querySelector('.holo-block');
+		const image = project.querySelector('.project-image');
+		const description = project.querySelector('.project-desc');
+
+		if (name) await typeIn(name, 45);
+		image?.classList.add('is-on');
+		await wait(700);
+		if (description) await typeIn(description, 12);
+
+		for (const slot of project.querySelectorAll('.tech-slot')) {
+			slot.classList.add('is-on');
+			await wait(150);
+		}
+	}
+
+	async function revealButton(button: HTMLAnchorElement) {
+		button.classList.add('is-visible');
+		for (const phase of ['1', '2', '3', '4']) {
+			button.dataset.phase = phase;
+			await wait(1000);
+		}
+	}
+
+	function showEverything(button: HTMLAnchorElement) {
+		document
+			.querySelectorAll('.holo-letter, .project-image, .tech-slot')
+			.forEach((el) => el.classList.add('is-on'));
+		button.classList.add('is-visible');
+		button.dataset.phase = '4';
+	}
+
+	async function run() {
+		const title = document.querySelector('.holo-title');
+		const button = document.querySelector<HTMLAnchorElement>('.morph-btn');
+		const video = document.querySelector('video');
+		if (!button) return;
+
+		if (reduceMotion) {
+			video?.pause();
+			showEverything(button);
+			return;
+		}
+
+		await wait(600);
+		if (title) await typeIn(title, 45);
+		for (const project of document.querySelectorAll<HTMLElement>('[data-project]')) {
+			await revealProject(project);
+		}
+		await revealButton(button);
+	}
+
+	run();
+</script>

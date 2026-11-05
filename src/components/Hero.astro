@@ -15,20 +15,20 @@ const keyRows = [
 	<div class="laptop-scene w-full max-w-3xl">
 		<div class="laptop group relative">
 			<div
-				class="laptop-lid relative overflow-hidden rounded-t-xl border border-b-0 border-zinc-700 bg-zinc-900 shadow-[0_-18px_50px_-24px_rgba(0,0,0,0.8)]"
+				class="laptop-lid relative overflow-hidden rounded-t-[1.4rem] border border-b-0 border-black/70 bg-linear-to-br from-[#252b36] via-[#151a22] to-[#0d1016] shadow-[0_-20px_55px_-28px_rgba(0,0,0,0.85),0_26px_52px_-28px_rgba(0,0,0,0.95),inset_0_1px_0_rgba(255,255,255,0.06)]"
 			>
 				<div class="flex h-5 items-center justify-center sm:h-6">
 					<div
-						class="relative h-1.5 w-1.5 rounded-full bg-zinc-800 ring-1 ring-zinc-700"
+						class="relative h-1.5 w-1.5 rounded-full bg-[#0d1015] ring-1 ring-white/15"
 						aria-hidden="true"
 					>
-						<span class="absolute inset-0.75 rounded-full bg-zinc-500/80"></span>
+						<span class="absolute inset-0.75 rounded-full bg-sky-300/70 shadow-[0_0_6px_rgba(125,211,252,0.6)]"></span>
 					</div>
 				</div>
 
 				<div class="px-2 pb-2 sm:px-3 sm:pb-3">
 					<div
-						class="relative aspect-video overflow-hidden rounded-sm border border-zinc-800 bg-black"
+						class="relative aspect-video overflow-hidden rounded-[0.7rem] border border-black/90 bg-[#0d1117] shadow-[inset_0_0_0_2px_rgba(0,0,0,0.45),inset_0_0_32px_rgba(0,0,0,0.6),0_2px_5px_rgba(0,0,0,0.55)]"
 						data-laptop-screen
 					>
 						<h1 class="sr-only">Isaías — Software Engineer</h1>
@@ -43,20 +43,28 @@ const keyRows = [
 							aria-hidden="true"
 						></video>
 
+							<div class="screen-reflection pointer-events-none absolute inset-0 z-30" aria-hidden="true"></div>
+
 						<div
-							class="screen-terminal absolute inset-0 z-20 flex h-full flex-col bg-black/95 font-mono text-xs leading-relaxed text-zinc-100 opacity-0 sm:text-sm"
+							class="screen-terminal absolute inset-0 z-20 flex h-full flex-col bg-[#0f131a]/[.98] font-mono text-xs leading-relaxed text-[#abb2bf] opacity-0 sm:text-sm"
 							data-intro-terminal
 							aria-hidden="true"
 						>
-							<div class="screen-scanlines pointer-events-none absolute inset-0"></div>
-							<div class="relative z-10 h-full overflow-auto p-4 sm:p-6">
+							<div class="terminal-topbar relative z-10 flex items-center gap-1.5 border-b border-white/10 bg-[#171b22] px-3 py-2 sm:px-4">
+									<span class="h-2 w-2 rounded-full bg-[#e06c75]"></span>
+									<span class="h-2 w-2 rounded-full bg-[#e5c07b]"></span>
+									<span class="h-2 w-2 rounded-full bg-[#98c379]"></span>
+									<span class="ml-2 text-[10px] tracking-wide text-[#5c6370] sm:text-xs">isaías@portfolio — zsh</span>
+								</div>
+								<div class="screen-scanlines pointer-events-none absolute inset-0"></div>
+							<div class="relative z-10 min-h-0 flex-1 overflow-hidden p-3 text-[11px] leading-snug sm:p-4 sm:text-xs">
 								{/* Primer Prompt: whoami */}
 								<div class="flex flex-wrap items-baseline gap-x-2">
 									<span class="text-green-400">isaías@portfolio</span>
 									<span class="text-zinc-500">:</span>
 									<span class="text-green-200">~</span>
 									<span class="text-zinc-100">$</span>
-									<span data-typed-command1></span>
+									<span data-typed-command1></span><span class="typed-cursor" aria-hidden="true" data-terminal-cursor="1"></span>
 								</div>
 
 								{/* Foto, Nombre, Título e Info */}
@@ -87,7 +95,7 @@ const keyRows = [
 									<span class="text-zinc-500">:</span>
 									<span class="text-green-200">~</span>
 									<span class="text-zinc-100">$</span>
-									<span data-typed-command2></span>
+									<span data-typed-command2></span><span class="typed-cursor" aria-hidden="true" data-terminal-cursor="2"></span>
 								</div>
 
 								{/* Enlaces de Contacto */}
@@ -146,7 +154,7 @@ const keyRows = [
 									<span class="text-zinc-500">:</span>
 									<span class="text-green-200">~</span>
 									<span class="text-zinc-100">$</span>
-									<span class="typed-cursor"></span>
+									<span class="typed-cursor" aria-hidden="true" data-terminal-cursor="final"></span>
 								</div>
 							</div>
 						</div>
@@ -155,24 +163,24 @@ const keyRows = [
 			</div>
 
 			<div
-				class="laptop-hinge relative z-10 h-2 bg-linear-to-b from-zinc-700 via-zinc-800 to-zinc-900"
+				class="laptop-hinge relative z-10 h-2.5 bg-linear-to-b from-[#2b323d] via-[#171c24] to-[#090c11] shadow-[0_6px_10px_-5px_rgba(0,0,0,0.95)]"
 				aria-hidden="true"
 			>
 				<div
-					class="absolute inset-x-8 top-1/2 h-px -translate-y-1/2 bg-zinc-600/40"
+					class="absolute inset-x-8 top-1/2 h-px -translate-y-1/2 bg-black/70 shadow-[0_1px_0_rgba(255,255,255,0.04)]"
 				>
 				</div>
 			</div>
 
-			<div class="laptop-base origin-top rounded-b-xl border border-t-0 border-zinc-700 bg-zinc-800 px-3 pb-3 pt-2 sm:px-5 sm:pb-4">
-				<div class="space-y-1 rounded-md bg-zinc-900/70 p-1.5 sm:p-2" aria-hidden="true">
+			<div class="laptop-base origin-top rounded-b-[1.4rem] border border-t-0 border-black/75 bg-linear-to-b from-[#303845] via-[#1b212b] to-[#0e1218] px-3 pb-3 pt-2 shadow-[0_34px_48px_-24px_rgba(0,0,0,0.95),inset_0_1px_0_rgba(255,255,255,0.07)] sm:px-5 sm:pb-4">
+				<div class="laptop-deck relative h-24 rounded-xl bg-linear-to-b from-[#252c37] via-[#1b212b] to-[#12171e] p-2 shadow-[inset_0_2px_4px_rgba(255,255,255,0.04),inset_0_-4px_8px_rgba(0,0,0,0.5),0_2px_4px_rgba(0,0,0,0.45)] sm:h-32 sm:p-2.5" aria-hidden="true">
 					{
 						keyRows.map((row) => (
-							<div class="flex justify-center gap-1">
+							<div class="flex justify-center gap-1.5">
 								{Array.from({ length: row.keys }).map(() => (
 									<span
 										class:list={[
-											'h-1.5 rounded-xs border border-zinc-700/80 bg-zinc-800 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] sm:h-2',
+											'h-2 rounded-[4px] border border-zinc-600/80 bg-linear-to-b from-zinc-700 to-zinc-800 shadow-[inset_0_1px_0_rgba(255,255,255,0.12),0_2px_2px_rgba(0,0,0,0.55)] sm:h-3',
 											row.size === 'md' ? 'w-[7.2%]' : 'w-[6.2%]',
 										]}
 									/>
@@ -182,20 +190,20 @@ const keyRows = [
 					}
 					<div class="flex justify-center pt-0.5">
 						<span
-							class="h-1.5 w-[38%] rounded-xs border border-zinc-700/80 bg-zinc-800 sm:h-2"
+							class="h-2 w-[38%] rounded-[4px] border border-zinc-600/80 bg-linear-to-b from-zinc-700 to-zinc-800 shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_2px_2px_rgba(0,0,0,0.5)] sm:h-3"
 						>
 						</span>
 					</div>
 				</div>
 
 				<div
-					class="mx-auto mt-2 h-1.5 w-16 rounded-b-md bg-zinc-900 ring-1 ring-inset ring-zinc-700/70"
+					class="mx-auto mt-2 h-1.5 w-16 rounded-b-md bg-[#11151c] ring-1 ring-inset ring-white/10"
 					aria-hidden="true"
 				>
 				</div>
 
 				<div
-					class="mx-auto mt-2 h-10 w-[32%] rounded-md border border-zinc-700/80 bg-zinc-800/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] sm:h-12"
+					class="mx-auto mt-2 h-10 w-[32%] rounded-lg border border-black/60 bg-[#171c24] shadow-[inset_0_2px_4px_rgba(0,0,0,0.55),0_1px_0_rgba(255,255,255,0.04)] sm:h-12"
 					aria-hidden="true"
 				>
 				</div>
@@ -206,40 +214,48 @@ const keyRows = [
 
 <style>
 	.laptop-scene {
-		perspective: 1400px;
+		
 	}
 
 	.laptop {
-		transform-style: preserve-3d;
-		transition: transform 500ms ease;
+		
+	filter: drop-shadow(0 30px 24px rgb(0 0 0 / 0.32));
+		
 	}
 
 	.laptop-lid {
-		transform-origin: bottom center;
-		transform: rotateX(-8deg);
-		transition: transform 500ms ease, box-shadow 500ms ease;
+		
 	}
 
 	.laptop-base {
-		transform: rotateX(16deg);
-		transform-origin: top center;
+		
 		box-shadow: 0 28px 40px -24px rgb(0 0 0 / 0.85);
 	}
 
-	.laptop:hover {
-		transform: translateY(-6px);
+	
+		
+		
 	}
 
-	.laptop:hover .laptop-lid {
-		transform: rotateX(-2deg);
+	
+		
 		box-shadow:
-			0 0 0 1px rgb(255 255 255 / 0.04),
-			0 -24px 60px -20px rgb(255 255 255 / 0.08);
+			0 0 0 1px rgb(0 0 0 / 0.55),
+			0 -24px 60px -20px rgb(15 23 42 / 0.45);
 	}
 
 	.screen-video,
 	.screen-terminal {
-		transition: opacity 700ms ease;
+		transition: opacity 700ms cubic-bezier(0.22, 1, 0.36, 1);
+	}
+
+	.screen-reflection {
+		background: linear-gradient(125deg, rgb(255 255 255 / 0.12), transparent 28%, transparent 68%, rgb(125 211 252 / 0.04));
+		mix-blend-mode: screen;
+	}
+
+	.terminal-topbar {
+		font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
 	}
 
 	.screen-video.is-hidden {
@@ -249,6 +265,7 @@ const keyRows = [
 
 	.screen-terminal {
 		pointer-events: none;
+		font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
 	}
 
 	.screen-terminal.is-visible {
@@ -268,13 +285,18 @@ const keyRows = [
 	}
 
 	.typed-cursor {
+		display: none;
+		width: 0.55em;
+		height: 1.1em;
+		background-color: #61afef;
+		box-shadow: 0 0 8px rgb(97 175 239 / 0.7);
+		animation: blink 1.05s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+		margin-left: 3px;
+		vertical-align: -0.18em;
+	}
+
+	.typed-cursor.is-active {
 		display: inline-block;
-		width: 3px;
-		height: 0.95em;
-		background-color: #4ade80; /* Verde terminal */
-		animation: blink 1s step-end infinite;
-		margin-left: 4px;
-		vertical-align: text-bottom;
 	}
 
 	@keyframes blink {
@@ -291,12 +313,12 @@ const keyRows = [
 			transition: none;
 		}
 
-		.laptop:hover {
-			transform: none;
+		
+			
 		}
 
-		.laptop:hover .laptop-lid {
-			transform: rotateX(-8deg);
+		
+			
 		}
 
 		.typed-cursor {
@@ -308,7 +330,7 @@ const keyRows = [
 <script>
 	const VIDEO_START_TIMEOUT_MS = 8000;
 	const VIDEO_STALL_TIMEOUT_MS = 2000;
-	const TYPE_MS = 120;
+	const TYPE_MS = 72;
 	const COMMAND1 = 'whoami';
 	const COMMAND2 = 'cat contact.txt';
 
@@ -320,10 +342,13 @@ const keyRows = [
 	const command2El = document.querySelector<HTMLElement>('[data-typed-command2]');
 	const linksEl = document.querySelector<HTMLElement>('[data-typed-links]');
 	const promptFinalEl = document.querySelector<HTMLElement>('[data-typed-prompt-final]');
+	const cursor1 = document.querySelector<HTMLElement>('[data-terminal-cursor="1"]');
+	const cursor2 = document.querySelector<HTMLElement>('[data-terminal-cursor="2"]');
+	const finalCursor = document.querySelector<HTMLElement>('[data-terminal-cursor="final"]');
 	const emailBtn = document.querySelector<HTMLButtonElement>('[data-copy-email]');
 	const copyFeedback = document.querySelector<HTMLElement>('[data-copy-feedback]');
 
-	if (video && terminal && command1El && profileEl && prompt2El && command2El && linksEl && promptFinalEl) {
+	if (video && terminal && command1El && profileEl && prompt2El && command2El && linksEl && promptFinalEl && cursor1 && cursor2 && finalCursor) {
 		const introVideo = video;
 		const introTerminal = terminal;
 		const typedCommand1 = command1El;
@@ -332,12 +357,18 @@ const keyRows = [
 		const typedCommand2 = command2El;
 		const typedLinks = linksEl;
 		const typedPromptFinal = promptFinalEl;
+		const cursors = [cursor1, cursor2, finalCursor];
 		const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 		let switched = false;
 		let fallbackId: number | undefined;
 		let observer: IntersectionObserver | undefined;
 
 		const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+		function activateCursor(cursor: HTMLElement) {
+			for (const currentCursor of cursors) currentCursor.classList.remove('is-active');
+			cursor.classList.add('is-active');
+		}
 
 		function clearFallback() {
 			if (fallbackId !== undefined) {
@@ -370,11 +401,14 @@ const keyRows = [
 				typedCommand2.textContent = COMMAND2;
 				typedLinks.classList.remove('hidden');
 				typedPromptFinal.classList.remove('hidden');
+				activateCursor(finalCursor);
 				return;
 			}
 
 			// Escribir comando 1: whoami
+			activateCursor(cursor1);
 			await typeInto(typedCommand1, COMMAND1, TYPE_MS);
+			cursor1.classList.remove('is-active');
 			await sleep(150);
 
 			// Mostrar Info de Usuario
@@ -385,13 +419,16 @@ const keyRows = [
 			// Mostrar Prompt 2 y escribir comando 2: cat contact.txt
 			typedPrompt2.classList.remove('hidden');
 			typedPrompt2.classList.add('flex');
+			activateCursor(cursor2);
 			await typeInto(typedCommand2, COMMAND2, TYPE_MS);
+			cursor2.classList.remove('is-active');
 			await sleep(150);
 
 			// Mostrar enlaces y prompt final
 			typedLinks.classList.remove('hidden');
 			typedPromptFinal.classList.remove('hidden');
 			typedPromptFinal.classList.add('flex');
+			activateCursor(finalCursor);
 		}
 
 		function showTerminal() {

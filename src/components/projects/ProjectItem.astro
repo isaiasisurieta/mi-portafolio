@@ -1,0 +1,187 @@
+---
+import HologramText from './HologramText.astro';
+import TechIcon from './TechIcon.astro';
+import type { Project } from '../../data/projects';
+
+interface Props {
+	project: Project;
+	mirrored?: boolean;
+}
+
+const { project, mirrored = false } = Astro.props;
+---
+
+<article data-project class="flex flex-col gap-8">
+	<div class:list={['flex justify-center', mirrored ? 'md:justify-end' : 'md:justify-start']}>
+		<HologramText
+			tag="h2"
+			variant="name"
+			text={project.name}
+			class:list={[
+				'font-space text-[clamp(1.75rem,3.5vw,2.75rem)] font-normal leading-[1.2] text-[#00ffff] text-center',
+				mirrored ? 'md:text-right' : 'md:text-left',
+			]}
+		/>
+	</div>
+
+	<div
+		class:list={[
+			'flex flex-col items-center gap-6 md:grid md:items-center md:gap-8',
+			mirrored ? 'md:grid-cols-[56px_1fr_38%]' : 'md:grid-cols-[38%_1fr_56px]',
+		]}
+	>
+		<div
+			class:list={[
+				'project-image relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-transparent',
+				mirrored && 'md:order-3',
+			]}
+		>
+			<div class="scan-media absolute inset-0 bg-[repeating-linear-gradient(0deg,rgba(0,255,255,0.08)_0_1px,transparent_1px_8px),linear-gradient(135deg,#0b2a2e,#06181b)]">
+				<img
+					src={project.image}
+					alt={`Captura del proyecto ${project.name}`}
+					class="h-full w-full object-cover"
+					onerror="this.remove()"
+				/>
+				<span class="absolute inset-0 bg-[#00b3b3] opacity-45 mix-blend-color" aria-hidden="true"></span>
+				<span
+					class="absolute inset-0 bg-[repeating-linear-gradient(to_bottom,rgba(0,0,0,0.25)_0_1px,transparent_1px_3px)]"
+					aria-hidden="true"
+				></span>
+			</div>
+		</div>
+
+		<HologramText
+			tag="p"
+			variant="text"
+			text={project.description}
+			class:list={[
+				'project-desc w-full max-w-md text-center font-space text-base leading-[1.6] text-[#00ffff] md:text-left',
+				mirrored && 'md:order-2',
+			]}
+		/>
+
+		<div
+			class:list={[
+				'flex flex-row items-center justify-center gap-2.5 md:flex-col',
+				mirrored && 'md:order-1',
+			]}
+		>
+			{project.tech.map((tech) => (
+				<span class="tech-slot">
+					<TechIcon name={tech} />
+				</span>
+			))}
+		</div>
+	</div>
+</article>
+
+<style>
+	.project-image {
+		transition: border-color 0.5s ease, box-shadow 0.5s ease;
+	}
+
+	.project-image.is-on {
+		border-color: rgba(0, 255, 255, 0.6);
+		box-shadow:
+			0 0 18px rgba(0, 255, 255, 0.35),
+			0 0 48px rgba(0, 255, 255, 0.12);
+	}
+
+	.scan-media {
+		clip-path: inset(0 100% 0 0);
+	}
+
+	.project-image.is-on .scan-media {
+		animation: scan-reveal 0.7s linear forwards;
+	}
+
+	/* Línea de escaneo que avanza en el mismo borde que el recorte */
+	.project-image::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		width: 2px;
+		background: #00ffff;
+		box-shadow:
+			0 0 12px #00ffff,
+			0 0 24px #00ffff;
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	.project-image.is-on::after {
+		animation: scan-laser 0.7s linear forwards;
+	}
+
+	.tech-slot {
+		opacity: 0;
+	}
+
+	.tech-slot.is-on {
+		animation: tech-pop 0.5s cubic-bezier(0.2, 1.4, 0.4, 1) forwards;
+	}
+
+	@keyframes scan-reveal {
+		from {
+			clip-path: inset(0 100% 0 0);
+		}
+		to {
+			clip-path: inset(0 0 0 0);
+		}
+	}
+
+	@keyframes scan-laser {
+		0% {
+			left: 0;
+			opacity: 1;
+		}
+		95% {
+			left: 100%;
+			opacity: 1;
+		}
+		100% {
+			left: 100%;
+			opacity: 0;
+		}
+	}
+
+	@keyframes tech-pop {
+		0% {
+			opacity: 0;
+			transform: scale(0.4);
+			filter: drop-shadow(0 0 0 #00ffff);
+		}
+		60% {
+			opacity: 1;
+			transform: scale(1.12);
+			filter: drop-shadow(0 0 12px #00ffff);
+		}
+		100% {
+			opacity: 1;
+			transform: scale(1);
+			filter: drop-shadow(0 0 4px rgba(0, 255, 255, 0.5));
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.project-image.is-on .scan-media,
+		.tech-slot.is-on {
+			animation: none;
+		}
+
+		.scan-media {
+			clip-path: none;
+		}
+
+		.project-image::after {
+			display: none;
+		}
+
+		.tech-slot {
+			opacity: 1;
+		}
+	}
+</style>

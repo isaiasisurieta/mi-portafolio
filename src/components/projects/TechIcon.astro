@@ -1,0 +1,27 @@
+---
+import type { TechName } from '../../data/projects';
+
+interface Props {
+	name: TechName;
+}
+
+const { name } = Astro.props;
+
+const logos: Record<TechName, { src: string; label: string }> = {
+	astro: { src: '/astro-logo.svg', label: 'Astro' },
+	react: { src: '/react-native-logo%20(1).svg', label: 'React' },
+	tailwind: { src: '/tailwind-css-logo.svg', label: 'Tailwind CSS' },
+	figma: { src: '/figma-logo.svg', label: 'Figma' },
+};
+
+const logo = logos[name];
+---
+
+<span
+	class="tech-icon flex h-10 w-10 items-center justify-center rounded-full border border-[#00ffff] bg-[#071416] shadow-[0_0_10px_rgba(0,255,255,0.25)]"
+	role="img"
+	aria-label={logo.label}
+	title={logo.label}
+>
+	<img src={logo.src} alt="" class="h-[22px] w-[22px] object-contain" />
+</span>

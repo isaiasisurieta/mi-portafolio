@@ -1,0 +1,249 @@
+---
+interface Props {
+	text: string;
+	tag?: 'h1' | 'h2' | 'p' | 'div';
+	variant?: 'title' | 'name' | 'text';
+	class?: string;
+}
+
+const { text, tag: Tag = 'div', variant = 'text', class: className } = Astro.props;
+const words = text.split(' ');
+---
+
+<Tag class:list={['holo-block', `holo-${variant}`, className]} aria-label={text}>
+	{
+		words.map((word, index) => (
+			<>
+				<span class="holo-word">
+					{[...word].map((char) => (
+						<span
+							class="holo-letter"
+							data-c={char}
+							style={`--d: ${Math.random().toFixed(3)}`}
+							aria-hidden="true"
+						>
+							{char}
+						</span>
+					))}
+				</span>
+				{index < words.length - 1 && ' '}
+			</>
+		))
+	}
+</Tag>
+
+<style>
+	.holo-block {
+		position: relative;
+	}
+
+	.holo-block::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		background: repeating-linear-gradient(
+			to bottom,
+			rgba(0, 255, 255, 0.05) 0 1px,
+			transparent 1px 3px
+		);
+	}
+
+	.holo-word {
+		white-space: nowrap;
+	}
+
+	.holo-letter {
+		position: relative;
+		display: inline-block;
+		color: inherit;
+		opacity: 0;
+		text-shadow:
+			0 0 6px rgba(0, 255, 255, 0.55),
+			0 0 16px rgba(0, 255, 255, 0.25);
+	}
+
+	.holo-title .holo-letter {
+		text-shadow:
+			0 0 8px rgba(0, 255, 255, 0.9),
+			0 0 22px rgba(0, 255, 255, 0.55),
+			0 0 44px rgba(0, 255, 255, 0.3);
+	}
+
+	/* Aberración cromática: capas rojo y azul que solo aparecen en el micro-glitch */
+	.holo-letter::before,
+	.holo-letter::after {
+		content: attr(data-c);
+		position: absolute;
+		inset: 0;
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	.holo-letter::before {
+		color: #ff2d55;
+	}
+
+	.holo-letter::after {
+		color: #2d7bff;
+	}
+
+	.holo-letter.is-on {
+		animation:
+			holo-materialize 0.3s ease-out both,
+			holo-flicker 3.6s ease-in-out 0.3s infinite,
+			holo-glitch 7s linear calc(0.3s + var(--d) * 1s) infinite;
+	}
+
+	.holo-title .holo-letter.is-on {
+		animation:
+			holo-materialize 0.3s ease-out both,
+			holo-flicker-title 3.6s ease-in-out 0.3s infinite,
+			holo-glitch 7s linear calc(0.3s + var(--d) * 1s) infinite;
+	}
+
+	.holo-letter.is-on::before {
+		animation: holo-ghost-r 7s linear calc(0.3s + var(--d) * 1s) infinite;
+	}
+
+	.holo-letter.is-on::after {
+		animation: holo-ghost-b 7s linear calc(0.3s + var(--d) * 1s) infinite;
+	}
+
+	@keyframes holo-materialize {
+		0% {
+			opacity: 0;
+			filter: blur(6px);
+			transform: translateY(6px);
+			text-shadow:
+				0 0 2px #fff,
+				0 0 20px #00ffff;
+		}
+		60% {
+			opacity: 1;
+			filter: blur(0);
+			transform: translateY(-1px);
+			text-shadow:
+				0 0 2px #fff,
+				0 0 18px #00ffff,
+				0 0 30px rgba(0, 255, 255, 0.6);
+		}
+		100% {
+			opacity: 1;
+			filter: blur(0);
+			transform: translateY(0);
+		}
+	}
+
+	@keyframes holo-flicker {
+		0%,
+		100% {
+			opacity: 1;
+			text-shadow:
+				0 0 6px rgba(0, 255, 255, 0.55),
+				0 0 16px rgba(0, 255, 255, 0.25);
+		}
+		18% {
+			opacity: 0.88;
+		}
+		22% {
+			opacity: 1;
+		}
+		47% {
+			opacity: 0.86;
+			text-shadow:
+				0 0 4px rgba(0, 255, 255, 0.4),
+				0 0 12px rgba(0, 255, 255, 0.18);
+		}
+		52% {
+			opacity: 1;
+		}
+		78% {
+			opacity: 0.94;
+		}
+	}
+
+	@keyframes holo-flicker-title {
+		0%,
+		100% {
+			opacity: 1;
+			text-shadow:
+				0 0 8px rgba(0, 255, 255, 0.9),
+				0 0 22px rgba(0, 255, 255, 0.55),
+				0 0 44px rgba(0, 255, 255, 0.3);
+		}
+		18% {
+			opacity: 0.88;
+		}
+		22% {
+			opacity: 1;
+		}
+		47% {
+			opacity: 0.85;
+			text-shadow:
+				0 0 5px rgba(0, 255, 255, 0.6),
+				0 0 16px rgba(0, 255, 255, 0.3),
+				0 0 32px rgba(0, 255, 255, 0.18);
+		}
+		52% {
+			opacity: 1;
+		}
+		78% {
+			opacity: 0.94;
+		}
+	}
+
+	@keyframes holo-glitch {
+		0%,
+		91.8%,
+		92.4%,
+		100% {
+			transform: translateX(0);
+		}
+		92% {
+			transform: translateX(2px);
+		}
+	}
+
+	@keyframes holo-ghost-r {
+		0%,
+		91.8%,
+		92.4%,
+		100% {
+			opacity: 0;
+			transform: translateX(0);
+		}
+		92% {
+			opacity: 0.9;
+			transform: translateX(-2px);
+		}
+	}
+
+	@keyframes holo-ghost-b {
+		0%,
+		91.8%,
+		92.4%,
+		100% {
+			opacity: 0;
+			transform: translateX(0);
+		}
+		92% {
+			opacity: 0.9;
+			transform: translateX(2px);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.holo-letter,
+		.holo-letter.is-on,
+		.holo-title .holo-letter.is-on {
+			opacity: 1;
+			animation: none;
+		}
+
+		.holo-letter::before,
+		.holo-letter::after {
+			display: none;
+		}
+	}
+</style>

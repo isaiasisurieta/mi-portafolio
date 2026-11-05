@@ -1,0 +1,164 @@
+<a href="/" class="morph-btn font-space" data-phase="1">
+	<span class="morph-label">VER MÁS</span>
+</a>
+
+<style>
+	.morph-btn {
+		position: relative;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 160px;
+		height: 48px;
+		overflow: hidden;
+		border: 1px solid transparent;
+		border-radius: 0;
+		background-color: #d4d4d4;
+		box-shadow: none;
+		color: transparent;
+		font-weight: 700;
+		font-size: 0.875rem;
+		letter-spacing: 0.2em;
+		opacity: 0;
+		transform: scale(0.9);
+		pointer-events: none;
+		transition:
+			background-color 0.7s ease,
+			border-color 0.7s ease,
+			border-radius 0.7s ease,
+			box-shadow 0.7s ease,
+			color 0.7s ease,
+			opacity 0.6s ease,
+			transform 0.6s ease;
+	}
+
+	.morph-btn.is-visible {
+		opacity: 1;
+		transform: scale(1);
+	}
+
+	.morph-btn[data-phase='2'] {
+		background-color: #00ffff;
+		border-radius: 12px;
+	}
+
+	.morph-btn[data-phase='3'] {
+		background-color: #00ffff;
+		border-color: rgba(204, 255, 255, 0.9);
+		border-radius: 12px;
+		color: #03141a;
+	}
+
+	/* Fase final: degradado, glow neón y brillo que recorre el botón */
+	.morph-btn[data-phase='4'] {
+		background-color: #00ffff;
+		border-color: #b8ffff;
+		border-radius: 12px;
+		color: #03141a;
+		pointer-events: auto;
+		box-shadow:
+			0 0 6px rgba(0, 255, 255, 0.8),
+			0 0 18px rgba(0, 255, 255, 0.55),
+			0 0 40px rgba(0, 255, 255, 0.3),
+			inset 0 0 10px rgba(255, 255, 255, 0.35);
+	}
+
+	.morph-btn::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		opacity: 0;
+		background: linear-gradient(
+			135deg,
+			rgba(255, 255, 255, 0.35),
+			rgba(0, 255, 255, 0) 55%,
+			rgba(0, 179, 179, 0.55)
+		);
+		transition: opacity 0.7s ease;
+		pointer-events: none;
+	}
+
+	.morph-btn[data-phase='4']::before {
+		opacity: 1;
+	}
+
+	.morph-btn::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: -60%;
+		width: 40%;
+		background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+		transform: skewX(-20deg);
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	.morph-btn[data-phase='4']::after {
+		opacity: 1;
+		animation: morph-shine 3.2s ease-in-out 0.6s infinite;
+	}
+
+	.morph-label {
+		position: relative;
+		z-index: 1;
+	}
+
+	.morph-btn[data-phase='4'] .morph-label {
+		animation: morph-label-flash 3.2s ease-in-out infinite;
+	}
+
+	.morph-btn[data-phase='4']:hover {
+		transform: translateY(-2px);
+		box-shadow:
+			0 0 10px rgba(0, 255, 255, 1),
+			0 0 26px rgba(0, 255, 255, 0.8),
+			0 0 60px rgba(0, 255, 255, 0.5),
+			inset 0 0 12px rgba(255, 255, 255, 0.45);
+	}
+
+	.morph-btn[data-phase='4']:active {
+		transform: translateY(1px) scale(0.98);
+		box-shadow:
+			0 0 6px rgba(0, 255, 255, 0.8),
+			inset 0 2px 8px rgba(0, 80, 80, 0.5);
+	}
+
+	.morph-btn:focus-visible {
+		outline: 2px solid #00ffff;
+		outline-offset: 4px;
+	}
+
+	@keyframes morph-shine {
+		0% {
+			left: -60%;
+		}
+		60%,
+		100% {
+			left: 130%;
+		}
+	}
+
+	@keyframes morph-label-flash {
+		0%,
+		100% {
+			text-shadow: 0 0 0 transparent;
+		}
+		50% {
+			text-shadow:
+				0 0 6px rgba(255, 255, 255, 0.9),
+				0 0 12px rgba(255, 255, 255, 0.6);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.morph-btn,
+		.morph-btn::before,
+		.morph-btn::after,
+		.morph-label {
+			transition: none;
+			animation: none;
+		}
+	}
+</style>

@@ -2,4 +2,6 @@
 
 @theme {
 	--font-sans: ui-sans-serif, system-ui, sans-serif;
+	--font-display: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+	--font-space: 'Space Mono', ui-monospace, monospace;
 }
